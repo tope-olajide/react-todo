@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react";  // import the react component
  
 class TodoItems extends Component {
   createTasks(item) {

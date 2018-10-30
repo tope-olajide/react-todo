@@ -4,34 +4,34 @@ import "./TodoList.css";
 
 class TodoList extends Component {
     constructor(props) {
-        super(props);
+        super(props);// call the super class constructor and pass in the props parameter
         this.state = {
             items: []
           };
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
       }
-      addItem(e) {
-        if (this._inputElement.value !== "") {
-          var newItem = {
-            text: this._inputElement.value,
-            key: Date.now()
+      addItem(e) { // the class method is responsible for adding item the user enter into the textbox
+        if (this._inputElement.value !== "") { // if the input value is not empty
+          var newItem = { // add this items
+            text: this._inputElement.value, // the text value and the key
+            key: Date.now() // this key is required by react
           };
        
           this.setState((prevState) => {
             return { 
-              items: prevState.items.concat(newItem) 
+              items: prevState.items.concat(newItem) // update the state with the newItem object value
             };
           });
          
-          this._inputElement.value = "";
+          this._inputElement.value = ""; // clear the text field after adding the items
         }
-        console.log(this.state.items);
+        
      
-        e.preventDefault();
+        e.preventDefault();// overide the default form behaviour
     }
-    deleteItem(key) {
-      var filteredItems = this.state.items.filter(function (item) {
+    deleteItem(key) { // this method is used to remove the item that user added
+      var filteredItems = this.state.items.filter(function (item) { 
         return (item.key !== key);
       });
      
@@ -50,8 +50,7 @@ class TodoList extends Component {
             <button type="submit">add</button>
           </form>
         </div>
-        <TodoItems entries={this.state.items}
-           delete={this.deleteItem}/>
+        <TodoItems entries={this.state.items} delete={this.deleteItem}/>
       </div>
     );
   }
